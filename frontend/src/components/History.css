@@ -1,0 +1,152 @@
+.History {
+  width: 100%;
+}
+
+.History-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.History-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.History-header h2 {
+  margin: 0;
+  color: #282c34;
+}
+
+.History-refresh {
+  padding: 8px 16px;
+  background-color: #0066ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.History-refresh:hover {
+  background-color: #0052cc;
+}
+
+.History-loading,
+.History-empty {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
+
+.History-error {
+  text-align: center;
+  padding: 40px;
+  color: #dc3545;
+}
+
+.History-error button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0066ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.History-error button:hover {
+  background-color: #0052cc;
+}
+
+.History-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.History-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f8f9fa;
+}
+
+.History-item-header {
+  margin-bottom: 12px;
+}
+
+.History-date {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.History-message-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.History-message {
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.History-message.user-message {
+  background-color: #e3f2fd;
+  border-left: 3px solid #0066ff;
+  color: #0052cc;
+}
+
+.History-message.bot-message {
+  background-color: #f1f8e9;
+  border-left: 3px solid #8bc34a;
+}
+
+.message-label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.History-message.user-message .message-label {
+  color: #0052cc;
+}
+
+.History-message.bot-message .message-label {
+  color: #555;
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.History-message.user-message .message-text {
+  color: #0052cc;
+}
+
+.History-message.bot-message .message-text {
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .History-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .History-refresh {
+    width: 100%;
+  }
+}
+

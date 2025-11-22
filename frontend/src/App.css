@@ -1,0 +1,175 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0, 82, 204, 0.2);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-4blue {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  padding-right: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-number {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(-2deg);
+  margin-right: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.user-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-selector button {
+  padding: 8px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.user-selector button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.user-selector button.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+}
+
+.App-nav {
+  background-color: #ffffff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.App-nav a {
+  color: #666;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.App-nav a:hover {
+  background-color: #f5f5f5;
+  color: #0066ff;
+}
+
+.App-nav a.active {
+  background-color: #f0f7ff;
+  color: #0066ff;
+  font-weight: 600;
+}
+
+.App-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+  border-radius: 2px 2px 0 0;
+}
+
+.App-main {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .App-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .logo-4blue {
+    font-size: 24px;
+    padding-right: 0;
+    padding-bottom: 10px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .logo-number {
+    font-size: 28px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .App-header h1 {
+    font-size: 20px;
+  }
+
+  .App-main {
+    padding: 15px;
+  }
+}
+
