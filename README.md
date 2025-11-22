@@ -1,6 +1,6 @@
 # Chatbot de Atendimento Simulado
 
-Projeto fullstack desenvolvido para um desafio técnico. Sistema de chat com backend em Django REST Framework e frontend em React.
+Projeto fullstack para desafio técnico. Sistema de chat com backend em Django REST Framework e frontend em React.
 
 ## 📋 Requisitos Implementados
 
@@ -206,9 +206,10 @@ Criei um único model `Message` que armazena:
 - `user`: CharField com escolhas ('A' ou 'B') para identificar o usuário
 - `user_message`: TextField para a mensagem enviada pelo usuário
 - `bot_response`: TextField para a resposta mockada do sistema
+- `session_id`: CharField opcional para agrupar mensagens da mesma sessão de chat
 - `created_at`: DateTimeField automático para timestamp
 
-**Decisão**: Optei por um model simples e direto, já que não há necessidade de relacionamentos complexos. O campo `user` como CharField com choices é suficiente para identificar o usuário, e todas as informações necessárias (pergunta e resposta) ficam em um único registro.
+**Decisão**: Optei por um model simples e direto, já que não há necessidade de relacionamentos complexos. O campo `user` como CharField com choices é suficiente para identificar o usuário, e todas as informações necessárias (pergunta e resposta) ficam em um único registro. O `session_id` permite agrupar mensagens enviadas na mesma sessão de chat, facilitando a visualização no histórico.
 
 #### API REST
 
@@ -271,7 +272,8 @@ Após seguir todos os passos de instalação e ter ambos os servidores rodando:
 ### 3. Teste o Histórico
 - Clique em "Histórico" no menu de navegação (barra azul)
 - Você verá todas as mensagens do usuário atualmente selecionado
-- As mensagens estarão organizadas por data (mais recentes primeiro)
+- Mensagens da mesma sessão aparecem agrupadas em um único card
+- As sessões estão organizadas por data (mais recentes primeiro)
 - Troque o usuário ativo (A ↔ B) e veja o histórico atualizar automaticamente
 - Use o botão "Atualizar" para recarregar o histórico manualmente
 
