@@ -7,11 +7,12 @@ const api = axios.create({
   },
 });
 
-export const sendMessage = async (user, message) => {
+export const sendMessage = async (user, message, sessionId) => {
   try {
     const response = await api.post('/messages/', {
       user,
       user_message: message,
+      session_id: sessionId,
     });
     return response.data;
   } catch (error) {

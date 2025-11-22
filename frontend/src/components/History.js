@@ -13,6 +13,64 @@ function History() {
     loadHistory();
   }, [activeUser]);
 
+  const groupMessages = (messages) => {
+    if (messages.length === 0) return [];
+    
+    // Agrupa mensagens por session_id
+    const groupsMap = {};
+    
+    messages.forEach(msg => {
+      const sessionId = msg.session_id || `no-session-${msg.id}`;
+      if (!groupsMap[sessionId]) {
+        groupsMap[sessionId] = [];
+      }
+      groupsMap[sessionId].push(msg);
+    });
+    
+    // Para mensagens sem session_id, agrupa por tempo (5 minutos)
+    const finalGroups = [];
+    Object.keys(groupsMap).forEach(sessionId => {
+      const groupMessages = groupsMap[sessionId];
+      
+      // Se não tem session_id real, agrupa por tempo
+      if (sessionId.startsWith('no-session-')) {
+        const timeGroups = [];
+        let currentTimeGroup = [groupMessages[0]];
+        
+        for (let i = 1; i < groupMessages.length; i++) {
+          const prevTime = new Date(groupMessages[i - 1].created_at).getTime();
+          const currentTime = new Date(groupMessages[i].created_at).getTime();
+          const timeDiff = (currentTime - prevTime) / 1000 / 60; // diferença em minutos
+          
+          if (timeDiff < 5) {
+            currentTimeGroup.push(groupMessages[i]);
+          } else {
+            timeGroups.push(currentTimeGroup);
+            currentTimeGroup = [groupMessages[i]];
+          }
+        }
+        
+        if (currentTimeGroup.length > 0) {
+          timeGroups.push(currentTimeGroup);
+        }
+        
+        finalGroups.push(...timeGroups);
+      } else {
+        // Mensagens com session_id real
+        finalGroups.push(groupMessages);
+      }
+    });
+    
+    // Ordena por data da primeira mensagem (mais recente primeiro)
+    finalGroups.sort((a, b) => {
+      const timeA = new Date(a[0].created_at).getTime();
+      const timeB = new Date(b[0].created_at).getTime();
+      return timeB - timeA;
+    });
+    
+    return finalGroups;
+  };
+
   const loadHistory = async () => {
     setLoading(true);
     setError(null);
@@ -71,22 +129,37 @@ function History() {
           </div>
         ) : (
           <div className="History-list">
-            {messages.map((msg) => (
-              <div key={msg.id} className="History-item">
+            {groupMessages(messages).map((group, groupIndex) => (
+              <div key={`group-${groupIndex}`} className="History-item">
                 <div className="History-item-header">
                   <span className="History-date">
-                    {new Date(msg.created_at).toLocaleString('pt-BR')}
+                    {new Date(group[0].created_at).toLocaleString('pt-BR')}
+                    {group.length > 1 && (
+                      <span className="History-group-count"> • {group.length} mensagens</span>
+                    )}
                   </span>
                 </div>
                 <div className="History-message-group">
-                  <div className="History-message user-message">
-                    <div className="message-label">Você:</div>
-                    <div className="message-text">{msg.user_message}</div>
-                  </div>
-                  <div className="History-message bot-message">
-                    <div className="message-label">Bot:</div>
-                    <div className="message-text">{msg.bot_response}</div>
-                  </div>
+                  {group.map((msg, msgIndex) => (
+                    <React.Fragment key={msg.id}>
+                      <div className="History-message user-message">
+                        <div className="message-label">Você:</div>
+                        <div className="message-text">{msg.user_message}</div>
+                        {msgIndex < group.length - 1 && (
+                          <div className="message-time-small">
+                            {new Date(msg.created_at).toLocaleTimeString('pt-BR', { 
+                              hour: '2-digit', 
+                              minute: '2-digit' 
+                            })}
+                          </div>
+                        )}
+                      </div>
+                      <div className="History-message bot-message">
+                        <div className="message-label">Bot:</div>
+                        <div className="message-text">{msg.bot_response}</div>
+                      </div>
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
             ))}

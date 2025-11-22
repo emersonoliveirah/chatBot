@@ -27,6 +27,7 @@ def send_message(request):
     if serializer.is_valid():
         user = serializer.validated_data['user']
         user_message = serializer.validated_data['user_message']
+        session_id = serializer.validated_data.get('session_id', '')
         
         # Gera resposta mockada
         bot_response = get_bot_response(user)
@@ -35,7 +36,8 @@ def send_message(request):
         message = Message.objects.create(
             user=user,
             user_message=user_message,
-            bot_response=bot_response
+            bot_response=bot_response,
+            session_id=session_id if session_id else None
         )
         
         # Retorna a mensagem completa

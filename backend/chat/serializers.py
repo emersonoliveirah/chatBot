@@ -9,7 +9,7 @@ class MessageSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Message
-        fields = ['id', 'user', 'user_message', 'bot_response', 'created_at']
+        fields = ['id', 'user', 'user_message', 'bot_response', 'session_id', 'created_at']
         read_only_fields = ['id', 'bot_response', 'created_at']
 
 
@@ -20,4 +20,5 @@ class MessageCreateSerializer(serializers.Serializer):
     """
     user = serializers.ChoiceField(choices=['A', 'B'])
     user_message = serializers.CharField(max_length=1000)
+    session_id = serializers.CharField(max_length=100, required=False, allow_blank=True)
 

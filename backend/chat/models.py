@@ -15,6 +15,7 @@ class Message(models.Model):
     user = models.CharField(max_length=1, choices=USER_CHOICES, verbose_name='Usuário')
     user_message = models.TextField(verbose_name='Mensagem do Usuário')
     bot_response = models.TextField(verbose_name='Resposta do Bot')
+    session_id = models.CharField(max_length=100, verbose_name='ID da Sessão', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data de Criação')
     
     class Meta:
