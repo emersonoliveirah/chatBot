@@ -69,11 +69,14 @@ Antes de começar, certifique-se de ter instalado:
 ### 1. Clonar o Repositório
 
 ```bash
+# Windows
+Na sua IDE (Cursor/VSCode) utilize o Command Prompt - CMD; ou
+Navegue até a pasta na qual deseja clonar o repositório e abra o CMD a partir dela para executar os comandos.
+
 git clone https://github.com/emersonoliveirah/chatBot.git
 cd chatBot
 ```
 
-> **Nota:** Substitua `SEU_USUARIO` pelo seu usuário do GitHub ou use a URL completa do repositório.
 
 ### 2. Configurar o Backend (Django)
 
