@@ -74,7 +74,6 @@ Na sua IDE (Cursor/VSCode) utilize o Command Prompt - CMD; ou
 Navegue até a pasta na qual deseja clonar o repositório e abra o CMD a partir dela para executar os comandos.
 
 git clone https://github.com/emersonoliveirah/chatBot.git
-cd chatBot
 ```
 
 
@@ -83,6 +82,7 @@ cd chatBot
 #### Passo 1: Navegar até a pasta do backend
 
 ```bash
+cd chatBot
 cd backend
 ```
 
@@ -144,6 +144,7 @@ python manage.py runserver
 #### Passo 1: Navegar até a pasta do frontend
 
 ```bash
+cd chatBot
 cd frontend
 ```
 
